@@ -14,6 +14,6 @@ data("iris")
 
 iris_sub <- iris %>%
   rename_all(tolower) %>%
-  dplyr::filter(species != "setosa")
+  dplyr::filter(species != "setosa", sepal.length > 2)
 
 saveRDS(iris_sub, "data/iris_sub.rds")
