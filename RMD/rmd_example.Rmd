@@ -1,0 +1,75 @@
+---
+title: "R Markdown Example"
+author: "Ariel Chernofsky"
+date: "2/17/2022"
+output:
+  html_document:
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries}
+
+library(dplyr)
+library(ggplot2)
+library(broom)
+
+```
+
+## Data manipulation
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+library(dplyr)
+
+data("iris")
+
+iris_sub <- iris %>%
+  rename_all(tolower) %>%
+  dplyr::filter(species != "setosa", sepal.length > 2)
+
+
+```
+
+## Summary statistics
+
+You can also embed plots, for example:
+
+```{r}
+
+summary_table <- iris_sub %>%
+  group_by(species) %>%
+  summarize(N = n(),
+            mean_slen = mean(sepal.length),
+            median_slen = median(sepal.length),
+            sd_slen = sd(sepal.length))
+
+```
+
+## Exploratory plots
+
+```{r}
+
+ggplot(aes(sepal.width, petal.length, color = species), data = iris_sub) + 
+  geom_point() + 
+  theme_minimal()
+
+```
+
+## Fit a linear model
+
+```{r}
+lm1 <- lm(petal.length ~ sepal.width + sepal.length, data = iris_sub)
+
+tidy(lm1)
+glance(lm1)
+```
+
+
