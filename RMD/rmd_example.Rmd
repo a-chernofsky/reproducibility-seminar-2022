@@ -8,8 +8,13 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, comment = " ")
 ```
+
+
+An alternative option (or in addition) to having separate code files for each part of the analysis, a single well documented RMarkdown file can be used. 
+
+When using RMarkdown with GitHub, if we add the option to the YAML header `keep_md: true`, then we can view the rendered document on GitHub.
 
 ```{r libraries}
 
@@ -19,15 +24,11 @@ library(broom)
 
 ```
 
-## Data manipulation
+# Data manipulation
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+I like using the **dplyr** package from the [tidyverse](https://www.tidyverse.org/) ecosystem. 
 
 ```{r}
-
-library(dplyr)
 
 data("iris")
 
@@ -38,7 +39,7 @@ iris_sub <- iris %>%
 
 ```
 
-## Summary statistics
+# Summary statistics
 
 You can also embed plots, for example:
 
@@ -53,7 +54,9 @@ summary_table <- iris_sub %>%
 
 ```
 
-## Exploratory plots
+# Exploratory plots
+
+**ggplot2** is another package that is part of the [tidyverse](https://www.tidyverse.org/) ecosystem that can generate nice plots.
 
 ```{r}
 
@@ -63,13 +66,18 @@ ggplot(aes(sepal.width, petal.length, color = species), data = iris_sub) +
 
 ```
 
-## Fit a linear model
+# Fit a linear model
+
+We can regress petal length against sepal width and length to estimate the relationship between these variables.
 
 ```{r}
 lm1 <- lm(petal.length ~ sepal.width + sepal.length, data = iris_sub)
+```
 
+The **broom*** package has functions such as `tidy` and `glance` that nicely organize the output from many commonly used R packages.
+
+```{r}
 tidy(lm1)
 glance(lm1)
 ```
-
 

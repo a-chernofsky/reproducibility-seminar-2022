@@ -171,33 +171,32 @@ pre code {
 </div>
 
 
+<p>An alternative option (or in addition) to having separate code files for each part of the analysis, a single well documented RMarkdown file can be used.</p>
+<p>When using RMarkdown with GitHub, if we add the option to the YAML header <code>keep_md: true</code>, then we can view the rendered document on GitHub.</p>
 <pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.5</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
+<pre><code>  Warning: package &#39;dplyr&#39; was built under R version 4.0.5</code></pre>
+<pre><code>  
+  Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>  The following objects are masked from &#39;package:stats&#39;:
+  
+      filter, lag</code></pre>
+<pre><code>  The following objects are masked from &#39;package:base&#39;:
+  
+      intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code>library(ggplot2)</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.5</code></pre>
+<pre><code>  Warning: package &#39;ggplot2&#39; was built under R version 4.0.5</code></pre>
 <pre class="r"><code>library(broom)</code></pre>
-<div id="data-manipulation" class="section level2">
-<h2>Data manipulation</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>library(dplyr)
-
-data(&quot;iris&quot;)
+<div id="data-manipulation" class="section level1">
+<h1>Data manipulation</h1>
+<p>I like using the <strong>dplyr</strong> package from the <a href="https://www.tidyverse.org/">tidyverse</a> ecosystem.</p>
+<pre class="r"><code>data(&quot;iris&quot;)
 
 iris_sub &lt;- iris %&gt;%
   rename_all(tolower) %&gt;%
   dplyr::filter(species != &quot;setosa&quot;, sepal.length &gt; 2)</code></pre>
 </div>
-<div id="summary-statistics" class="section level2">
-<h2>Summary statistics</h2>
+<div id="summary-statistics" class="section level1">
+<h1>Summary statistics</h1>
 <p>You can also embed plots, for example:</p>
 <pre class="r"><code>summary_table &lt;- iris_sub %&gt;%
   group_by(species) %&gt;%
@@ -206,30 +205,32 @@ iris_sub &lt;- iris %&gt;%
             median_slen = median(sepal.length),
             sd_slen = sd(sepal.length))</code></pre>
 </div>
-<div id="exploratory-plots" class="section level2">
-<h2>Exploratory plots</h2>
+<div id="exploratory-plots" class="section level1">
+<h1>Exploratory plots</h1>
+<p><strong>ggplot2</strong> is another package that is part of the <a href="https://www.tidyverse.org/">tidyverse</a> ecosystem that can generate nice plots.</p>
 <pre class="r"><code>ggplot(aes(sepal.width, petal.length, color = species), data = iris_sub) + 
   geom_point() + 
   theme_minimal()</code></pre>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
-<div id="fit-a-linear-model" class="section level2">
-<h2>Fit a linear model</h2>
-<pre class="r"><code>lm1 &lt;- lm(petal.length ~ sepal.width + sepal.length, data = iris_sub)
-
-tidy(lm1)</code></pre>
-<pre><code>## # A tibble: 3 x 5
-##   term         estimate std.error statistic  p.value
-##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)    -1.80     0.481      -3.75 3.05e- 4
-## 2 sepal.width     0.218    0.168       1.30 1.97e- 1
-## 3 sepal.length    0.971    0.0843     11.5  7.43e-20</code></pre>
+<div id="fit-a-linear-model" class="section level1">
+<h1>Fit a linear model</h1>
+<p>We can regress petal length against sepal width and length to estimate the relationship between these variables.</p>
+<pre class="r"><code>lm1 &lt;- lm(petal.length ~ sepal.width + sepal.length, data = iris_sub)</code></pre>
+<p>The <strong>broom</strong>* package has functions such as <code>tidy</code> and <code>glance</code> that nicely organize the output from many commonly used R packages.</p>
+<pre class="r"><code>tidy(lm1)</code></pre>
+<pre><code>  # A tibble: 3 x 5
+    term         estimate std.error statistic  p.value
+    &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+  1 (Intercept)    -1.80     0.481      -3.75 3.05e- 4
+  2 sepal.width     0.218    0.168       1.30 1.97e- 1
+  3 sepal.length    0.971    0.0843     11.5  7.43e-20</code></pre>
 <pre class="r"><code>glance(lm1)</code></pre>
-<pre><code>## # A tibble: 1 x 12
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.692         0.685 0.463      109. 1.63e-25     2  -63.4  135.  145.
-## # ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<pre><code>  # A tibble: 1 x 12
+    r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+        &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+  1     0.692         0.685 0.463      109. 1.63e-25     2  -63.4  135.  145.
+  # ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 
 
