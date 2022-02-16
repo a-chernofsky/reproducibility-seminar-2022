@@ -41,11 +41,11 @@ iris_sub <- iris %>%
 
 # Summary statistics
 
-You can also embed plots, for example:
+**dplyr** also has some great functions for calculating summary statistics.
 
 ```{r}
 
-summary_table <- iris_sub %>%
+iris_sub %>%
   group_by(species) %>%
   summarize(N = n(),
             mean_slen = mean(sepal.length),
