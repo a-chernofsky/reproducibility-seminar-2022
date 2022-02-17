@@ -25,7 +25,7 @@ This talk is a hands on tutorial. Hopefully you have:
 
 <center>
 
-![recognize this?](C:/Users/ariel/Pictures/files.png)
+![recognize this?](presentation_figures/files.png)
 
 </center>
 
@@ -43,11 +43,23 @@ Github
 - sharing is caring
 - view development code
 - publicize your accomplishments
+- connect your local projects to the SCC
     
 
 ## Git vs. Github
 
-![https://medium.com/edureka/git-vs-github-67c511d09d3e](C:\Users\ariel\Documents\Git_Pres\git_v_github.png){width=75%}
+![https://medium.com/edureka/git-vs-github-67c511d09d3e](presentation_figures/git_v_github.png){width=75%}
+
+## Local to remote communications
+
+Interactions between Git and Github require credentials through either of these two protocols:
+
+1.  HTTPS using a personal access token (PAT) 
+2.  SSH using SSH keys
+
+To learn more: !https://happygitwithr.com/connect-intro.html
+
+HTTPS with a PAT is recommended because it is easier to use.
 
 ## Intro to RProjects
 
